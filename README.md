@@ -18,27 +18,6 @@ Clients run this server inside their own environment and connect it to their pre
 - No external dependencies required to run the server (beyond Node.js)  
 - Ready for Docker, CI, and cloud deployment  
 
----
-
-## 📦 Project Structure
-
-\`\`\`
-mcp-weather-server/
-├── src/
-│   ├── api/                 # Weather API client wrapper
-│   ├── tools/               # MCP tool implementations
-│   ├── schemas/             # JSON Schemas for tool inputs
-│   ├── types/               # MCP type definitions
-│   ├── server.ts            # MCP WebSocket server
-│   ├── config.ts            # Environment config loader
-│   └── index.ts             # Entrypoint
-├── test/                    # Jest test placeholders
-├── sdk-js/                  # Optional JS SDK (client helper)
-├── package.json
-├── tsconfig.json
-├── .env.example
-└── README.md
-\`\`\`
 
 ---
 
@@ -54,18 +33,17 @@ mcp-weather-server/
 
 Copy the example environment file:
 
-\`\`\`bash
+bash
 cp .env.example .env
-\`\`\`
+
 
 Then edit \`.env\`:
 
-\`\`\`
+
 WEATHER_API_KEY=your_api_key_here
 WEATHER_API_URL=https://api.yourweather.com
 PORT=3001
 LOG_LEVEL=info
-\`\`\`
 
 ---
 
@@ -73,22 +51,18 @@ LOG_LEVEL=info
 
 ### Development mode
 
-\`\`\`bash
+bash
 npm run dev
-\`\`\`
 
 ### Build & run
 
-\`\`\`bash
+bash
 npm run build
 npm start
-\`\`\`
+
 
 The server will start on:
-
-\`\`\`
 ws://localhost:3001
-\`\`\`
 
 ---
 
@@ -100,21 +74,20 @@ Retrieve current weather conditions for a specific latitude/longitude.
 
 **Input:**
 
-\`\`\`json
+json
 {
   "lat": 38.9,
   "lon": -77.0
 }
-\`\`\`
+
 
 **Output (example):**
 
-\`\`\`json
+json
 {
   "summary": "Current weather at (38.9, -77)",
   "data": { ... }
 }
-\`\`\`
 
 ---
 
@@ -124,30 +97,30 @@ Retrieve a multi‑day forecast for a location.
 
 **Input:**
 
-\`\`\`json
+json
 {
   "lat": 38.9,
   "lon": -77.0,
   "days": 5
 }
-\`\`\`
+
 
 **Output (example):**
 
-\`\`\`json
+json
 {
   "summary": "5‑day forecast for (38.9, -77)",
   "data": { ... }
 }
-\`\`\`
+
 
 ---
 
 ## 🧪 Testing
 
-\`\`\`bash
+bash
 npm test
-\`\`\`
+
 
 ---
 
@@ -156,19 +129,17 @@ npm test
 A Dockerfile is included.
 
 Build:
-
-\`\`\`bash
+bash
 docker build -t mcp-weather-server .
-\`\`\`
+
 
 Run:
-
-\`\`\`bash
-docker run -p 3001:3001 \\
-  -e WEATHER_API_KEY=your_api_key \\
-  -e WEATHER_API_URL=https://api.yourweather.com \\
+bash
+docker run -p 3001:3001
+  -e WEATHER_API_KEY=your_api_key
+  -e WEATHER_API_URL=https://api.yourweather.com
   mcp-weather-server
-\`\`\`
+
 
 ---
 
